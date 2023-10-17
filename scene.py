@@ -29,6 +29,8 @@ class CreateCircle(Scene):
         label_group.add(MathTex(fr"E{(4, 1)}").scale(0.5).next_to(g.edges[(4, 1)], np.array((0.0, 0.0, 0.0))))
         face2 = MathTex(r"F_{2}").scale(.75).to_corner(UP + LEFT)
         explanation2 = Text("Adding an edge \n without adding a \n vertex creates \n a new face").to_edge(LEFT).shift(LEFT).scale(.5)
+        equation = VGroup(MathTex(fr"V-E+F=2"), MathTex(f"{g.vertices.__len__()}-{g.edges.__len__()}+2=2")).arrange(
+            DOWN).to_edge(DOWN)
         self.play(Write(equation), Write(face2), Write(explanation2))
         self.wait(2)
         self.play(FadeOut(g, label_group, face1, equation, face2, explanation2))
