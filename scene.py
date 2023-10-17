@@ -31,7 +31,7 @@ class CreateCircle(Scene):
         label_group = VGroup(*tex_labels)
         equation = VGroup(MathTex(fr"V-E+F=2"), MathTex(f"{g.vertices.__len__()}-{g.edges.__len__()}+1=2")).arrange(
             DOWN).to_edge(DOWN)
-        explanation = Text("Edges = v \n so v−(v−1)+1=2").to_edge(LEFT).scale(.5)
+        explanation = Text(" Edges = v \nso v−(v−1)+1=2").to_edge(LEFT).scale(.5)
         self.play(Create(g), Create(label_group), Write(face1), Write(equation), Write(explanation))
         self.wait(2)
         g.add_edges((4, 1))
@@ -39,7 +39,7 @@ class CreateCircle(Scene):
         label_group.add(MathTex(fr"E{(4, 1)}").scale(0.5).next_to(g.edges[(4, 1)], np.array((0.0, 0.0, 0.0))).shift(
             np.array((0.0, 0.5, 0.0))))
         face2 = MathTex(r"F_{2}").scale(.75).to_corner(UP + LEFT).shift(np.array((1.0, -1.0, 0.0)))
-        explanation2 = Text("Adding an edge \n without adding a \n vertex creates \n a new face").to_edge(LEFT).shift(
+        explanation2 = Text(" Adding an edge \nwithout adding a \nvertex creates \na new face").to_edge(LEFT).shift(
             LEFT).scale(.5)
         equation2 = VGroup(MathTex(fr"V-E+F=2"), MathTex(f"{g.vertices.__len__()}-{g.edges.__len__()}+2=2")).arrange(
             DOWN).to_edge(DOWN)
@@ -60,22 +60,24 @@ class CreateCircle(Scene):
             print(e)
             print(g2.edges[e])
             if not e == (7, 1) and not e == (5, 7):
-                label2 = MathTex(fr"E{e}").scale(0.5).next_to(g2.edges[e], np.array((0.0, 0.0, 0.0))).shift(np.array((0.0, -0.25, 0.0)))
+                label2 = MathTex(fr"E{e}").scale(0.5).next_to(g2.edges[e], np.array((0.0, 0.0, 0.0))).shift(
+                    np.array((0.0, -0.25, 0.0)))
             else:
-                label2 = MathTex(fr"E{e}").scale(0.5).next_to(g2.edges[e], np.array((0.0, 0.0, 0.0))).shift(np.array((0.0, 0.25, 0.0)))
+                label2 = MathTex(fr"E{e}").scale(0.5).next_to(g2.edges[e], np.array((0.0, 0.0, 0.0))).shift(
+                    np.array((0.0, 0.25, 0.0)))
             tex_labels2.append(label2)
-
 
         faces = []
         for n in range(4):
             faces.append(
-                MathTex(fr"F_{n+3}").scale(.75).shift(np.array((1.75*math.cos(math.radians((n * 90) + 45)), 1.75*math.sin(
-                    math.radians((n * 90) + 45)), 0))))
+                MathTex(fr"F_{n + 3}").scale(.75).shift(
+                    np.array((1.75 * math.cos(math.radians((n * 90) + 45)), 1.75 * math.sin(
+                        math.radians((n * 90) + 45)), 0))))
         facelabels = VGroup(*faces)
         label_group2 = VGroup(*tex_labels2)
         self.play(Create(g2), Write(label_group2), Write(facelabels), Transform(equation, VGroup(MathTex(fr"V-E+F=2"),
                                                                                                  MathTex(
                                                                                                      f"{g2.vertices.__len__()}-"
-                                                                                                     f"{g2.edges.__len__()}+{2+faces.__len__()}=2")).arrange(
+                                                                                                     f"{g2.edges.__len__()}+{2 + faces.__len__()}=2")).arrange(
             DOWN).to_edge(DOWN)))
         self.wait(2)
