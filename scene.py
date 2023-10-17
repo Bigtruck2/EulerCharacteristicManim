@@ -15,7 +15,7 @@ class CreateCircle(Scene):
             label = MathTex(fr"V_{v}").scale(0.5).next_to(g.vertices[v], DOWN)
             tex_labels.append(label)
         for e in g.edges:
-            label2 = MathTex(fr"E{e}").scale(0.5).next_to(g.edges[e], np.array((0.0, 0.0, 0.0)))
+            label2 = MathTex(fr"E{e}").scale(0.5).next_to(g.edges[e], np.array((0.0, 0.0, 0.0))).shift(np.array((0.0, 0.5, 0.0)))
             tex_labels.append(label2)
         label_group = VGroup(*tex_labels)
         equation = VGroup(MathTex(fr"V-E+F=2"), MathTex(f"{g.vertices.__len__()}-{g.edges.__len__()}+1=2")).arrange(
@@ -26,8 +26,8 @@ class CreateCircle(Scene):
         self.play(FadeOut(equation, explanation))
         g.add_edges((4, 1))
         g.update_edges(g)
-        label_group.add(MathTex(fr"E{(4, 1)}").scale(0.5).next_to(g.edges[(4, 1)], np.array((0.0, 0.0, 0.0))))
-        face2 = MathTex(r"F_{2}").scale(.75).to_corner(UP + LEFT)
+        label_group.add(MathTex(fr"E{(4, 1)}").scale(0.5).next_to(g.edges[(4, 1)], np.array((0.0, 0.0, 0.0))).shift(np.array((0.0, 0.5, 0.0))))
+        face2 = MathTex(r"F_{2}").scale(.75).to_corner(UP + LEFT).shift(np.array((1.0, -1.0, 0.0)))
         explanation2 = Text("Adding an edge \n without adding a \n vertex creates \n a new face").to_edge(LEFT).shift(LEFT).scale(.5)
         equation = VGroup(MathTex(fr"V-E+F=2"), MathTex(f"{g.vertices.__len__()}-{g.edges.__len__()}+2=2")).arrange(
             DOWN).to_edge(DOWN)
