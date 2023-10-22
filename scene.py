@@ -3,17 +3,6 @@ import math
 from manim import *
 
 
-def get_direction_array(x, y):
-    if x == 0 and y > 0:
-        return UP
-    elif x < 0:
-        return LEFT
-    elif x > 0:
-        return RIGHT
-    elif x == 0 and y < 0:
-        return DOWN
-
-
 class CreateCircle(Scene):
     def construct(self):
         vertices = [n + 1 for n in range(4)]
@@ -33,7 +22,7 @@ class CreateCircle(Scene):
             DOWN).to_edge(DOWN)
         explanation = Text(" Edges = v \nso v−(v−1)+1=2").to_edge(LEFT).scale(.5)
         self.play(Create(g), Create(label_group), Write(face1), Write(equation), Write(explanation))
-        self.wait(2)
+        self.wait(3)
         g.add_edges((4, 1))
         g.update_edges(g)
         label_group.add(MathTex(fr"E{(4, 1)}").scale(0.5).next_to(g.edges[(4, 1)], np.array((0.0, 0.0, 0.0))).shift(
@@ -44,7 +33,7 @@ class CreateCircle(Scene):
         equation2 = VGroup(MathTex(fr"V-E+F=2"), MathTex(f"{g.vertices.__len__()}-{g.edges.__len__()}+2=2")).arrange(
             DOWN).to_edge(DOWN)
         self.play(Transform(equation, equation2), Write(face2), Transform(explanation, explanation2))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(g, label_group, explanation))
         vertices2 = [n + 1 for n in range(8)]
         edges2 = [(n + 1, n + 2) for n in range(8 - 1)] + [(n + 1, n + 3) for n in range(8 - 2) if n % 2 == 0] + [
@@ -80,4 +69,4 @@ class CreateCircle(Scene):
                                                                                                      f"{g2.vertices.__len__()}-"
                                                                                                      f"{g2.edges.__len__()}+{2 + faces.__len__()}=2")).arrange(
             DOWN).to_edge(DOWN)))
-        self.wait(2)
+        self.wait(3)
